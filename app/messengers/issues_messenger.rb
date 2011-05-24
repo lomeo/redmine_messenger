@@ -60,7 +60,7 @@ class IssuesMessenger < RedmineMessenger::Base
 
   def issue(messenger, params = {})
     if issue = Issue.find_by_id(params[:issue_id])
-      responce = "%s://%s/issues/%s\n" % [Setting.protocol, Setting.host_name, issue.id]
+      responce = "#{Setting.protocol}://#{Setting.host_name}/issues/#{issue.id}\n"
       responce << "#{issue.tracker.name} \##{issue.id} added by #{issue.author} at #{issue.start_date} to #{issue.project}\n"
       responce << "\n#{issue.subject}\n\n"
       responce << "Status:     #{issue.status.name}\n"

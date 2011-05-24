@@ -13,8 +13,8 @@ class RevisionsMessenger < RedmineMessenger::Base
     if issue = Issue.find_by_id(params[:issue_id])
       resp = ""
       issue.changesets.each do |changeset|
-        resp << ("r%s by %s at %s\n" % [changeset.revision, changeset.user, changeset.commit_date])
-        resp << ("%s://%s/projects/%s/repository/revisions/%s\n\n" % [Setting.protocol, Setting.host_name, changeset.repository.project.identifier, changeset.revision])
+        resp << "r#{changeset.revision} by #{changeset.user} at #{changeset.commit_date}\n"
+        resp << "#{Setting.protocol}://#{Setting.host_name}/projects/#{changeset.repository.project.identifier}/repository/revisions/#{changeset.revision}\n\n"
         resp << changeset.comments
         resp << "\n\n\n"
       end
