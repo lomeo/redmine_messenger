@@ -46,20 +46,20 @@ class IssuesMessenger < RedmineMessenger::Base
   def status_available(messenger, status)
     if messenger.resume_when_become_online? and messenger.timer_running? and messenger.timer_paused_because_of_status_change?
       messenger.timer_resume
-      ll(messenger.language, :messenger_command_timers_resumed_because_of_status_change, :issue => messenger.issue.subject)
+      l(:messenger_command_timers_resumed_because_of_status_change, :issue => messenger.issue.subject)
     end
   end
 
   def status_unavailable(messenger, status)
     if messenger.pause_when_become_offline_or_away? and messenger.timer_running? and not messenger.timer_paused?
       messenger.timer_pause(nil, true)
-      ll(messenger.language, :messenger_command_timers_paused_because_of_status_change, :issue => messenger.issue.subject)
+      l(:messenger_command_timers_paused_because_of_status_change, :issue => messenger.issue.subject)
     end
   end
 
   def start(messenger, params = {})
     if issue = Issue.find_by_id(params[:issue_id])
-      return ll(messenger.language, :messenger_command_issue_not_assignable_user) unless issue.assignable_users.include?(messenger.user)
+      return l(:messenger_command_issue_not_assignable_user) unless issue.assignable_users.include?(messenger.user)
       if messenger.timer_running?
         if issue != messenger.issue
           messenger.timer_finish
@@ -76,7 +76,7 @@ class IssuesMessenger < RedmineMessenger::Base
         status(messenger, params)
       end
     else
-      ll(messenger.language, :messenger_command_timers_issue_not_found)
+      l(:messenger_command_timers_issue_not_found)
     end
   end
 
@@ -84,12 +84,12 @@ class IssuesMessenger < RedmineMessenger::Base
     if messenger.timer_running?
       if messenger.timer_paused?
         messenger.timer_resume(params[:note])
-        ll(messenger.language, :messenger_command_timers_resumed, :issue => messenger.issue.subject)
+        l(:messenger_command_timers_resumed, :issue => messenger.issue.subject)
       else
-        ll(messenger.language, :messenger_command_timers_not_resumed, :issue => messenger.issue.subject)
+        l(:messenger_command_timers_not_resumed, :issue => messenger.issue.subject)
       end
     else
-      ll(messenger.language, :messenger_command_timers_not_running)
+      l(:messenger_command_timers_not_running)
     end
   end
 
@@ -97,26 +97,26 @@ class IssuesMessenger < RedmineMessenger::Base
     if messenger.timer_running?
       unless messenger.timer_paused?
         messenger.timer_pause(params[:note])
-        ll(messenger.language, :messenger_command_timers_paused, :issue => messenger.issue.subject)
+        l(:messenger_command_timers_paused, :issue => messenger.issue.subject)
       else
         if messenger.timer_paused_because_of_status_change?
           messenger.timer_pause(params[:note])
-          ll(messenger.language, :messenger_command_timers_paused, :issue => messenger.issue.subject)
+          l(:messenger_command_timers_paused, :issue => messenger.issue.subject)
         else
-          ll(messenger.language, :messenger_command_timers_not_paused, :issue => messenger.issue.subject)
+          l(:messenger_command_timers_not_paused, :issue => messenger.issue.subject)
         end
       end
     else
-      ll(messenger.language, :messenger_command_timers_not_running)
+      l(:messenger_command_timers_not_running)
     end
   end
 
   def cancel(messenger, params = {})
     if messenger.timer_running?
       messenger.timer_cancel
-      ll(messenger.language, :messenger_command_timers_cancelled, :issue => messenger.issue.subject)
+      l(:messenger_command_timers_cancelled, :issue => messenger.issue.subject)
     else
-      ll(messenger.language, :messenger_command_timers_not_running)
+      l(:messenger_command_timers_not_running)
     end
   end
 
@@ -124,47 +124,47 @@ class IssuesMessenger < RedmineMessenger::Base
     if messenger.timer_running?
       issue = messenger.issue
       if messenger.timer_finish(params[:done_ratio], params[:note])
-        ll(messenger.language, :messenger_command_timers_finished, :issue => issue.subject)
+        l(:messenger_command_timers_finished, :issue => issue.subject)
       else
-        ll(messenger.language, :messenger_command_timers_not_finished, :issue => issue.subject)
+        l(:messenger_command_timers_not_finished, :issue => issue.subject)
       end
     else
-      ll(messenger.language, :messenger_command_timers_not_running)
+      l(:messenger_command_timers_not_running)
     end
   end
 
   def note(messenger, params = {})
     if messenger.timer_running?
       messenger.timer_add_note(params[:note])
-      ll(messenger.language, :messenger_command_timers_noted, :issue => messenger.issue.subject)
+      l(:messenger_command_timers_noted, :issue => messenger.issue.subject)
     else
-      ll(messenger.language, :messenger_command_timers_not_running)
+      l(:messenger_command_timers_not_running)
     end
   end
 
   def status(messenger, params = {})
     if params[:issue_id] and params[:issue_id] > 0 and messenger.issue_id != params[:issue_id]
       if issue = Issue.find_by_id(params[:issue_id])
-        return ll(messenger.language, :messenger_command_issue_not_assignable_user) unless issue.assignable_users.include?(messenger.user)
+        return l(:messenger_command_issue_not_assignable_user) unless issue.assignable_users.include?(messenger.user)
         stats = stats_for_issue(issue, messenger.user_id)
-        responce = ll(messenger.language, :messenger_command_timers_not_running_for_that_issue, :issue => issue.subject) << "\n"
+        responce = l(:messenger_command_timers_not_running_for_that_issue, :issue => issue.subject) << "\n"
         responce << status_for_issue(messenger, stats)
         responce
       else
-        ll(messenger.language, :messenger_command_timers_issue_not_found)
+        l(:messenger_command_timers_issue_not_found)
       end
     else
       if messenger.timer_running?
         stats = stats_for_issue(messenger.issue, messenger.user_id, messenger.timer_to_hours)
         if messenger.timer_paused?
-          responce = ll(messenger.language, :messenger_command_timers_paused_status, :issue => messenger.issue.subject) << "\n"
+          responce = l(:messenger_command_timers_paused_status, :issue => messenger.issue.subject) << "\n"
         else
-          responce = ll(messenger.language, :messenger_command_timers_running_status, { :issue => messenger.issue.subject, :minutes => messenger.timer_to_minutes }) << "\n"
+          responce = l(:messenger_command_timers_running_status, { :issue => messenger.issue.subject, :minutes => messenger.timer_to_minutes }) << "\n"
         end
         responce << status_for_issue(messenger, stats)
         responce
       else
-        ll(messenger.language, :messenger_command_timers_not_running)
+        l(:messenger_command_timers_not_running)
       end
     end
   end
@@ -173,11 +173,11 @@ class IssuesMessenger < RedmineMessenger::Base
 
   def status_for_issue(messenger, stats)
     logged_by_you_today, logged_by_you, logged_by_all, rest_time, estimated_time, done_ratio = stats
-    responce = ll(messenger.language, :messenger_command_timers_running_stats_time, { :hours_logged_by_you_today => logged_by_you_today, :hours_logged_by_you => logged_by_you, :hours_logged_by_all => logged_by_all }) << "\n"
+    responce = l(:messenger_command_timers_running_stats_time, { :hours_logged_by_you_today => logged_by_you_today, :hours_logged_by_you => logged_by_you, :hours_logged_by_all => logged_by_all }) << "\n"
     if estimated_time > 0
-      responce << ll(messenger.language, :messenger_command_timers_running_stats_done_with_estimation, { :done => done_ratio, :remaining_hours => rest_time, :estimated_hours => estimated_time })
+      responce << l(:messenger_command_timers_running_stats_done_with_estimation, { :done => done_ratio, :remaining_hours => rest_time, :estimated_hours => estimated_time })
     else
-      responce << ll(messenger.language, :messenger_command_timers_running_stats_done, :done => done_ratio)
+      responce << l(:messenger_command_timers_running_stats_done, :done => done_ratio)
     end
     responce
   end
