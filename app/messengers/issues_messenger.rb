@@ -68,6 +68,12 @@ class IssuesMessenger < RedmineMessenger::Base
       responce << "Assignee:   #{issue.assigned_to.name}\n" if issue.assigned_to
       responce << "Category:   #{issue.category.name}\n" if issue.category
       responce << "\n" << issue.description if issue.description and issue.description.size > 1
+      if issue.attachments and issue.attachments.size > 0 then
+        responce << "\n\n"
+        issue.attachments.each do |attach|
+          responce << "#{attach.description}: #{Setting.protocol}://#{Setting.host_name}/attachments/#{attach.id}/#{attach.filename}\n"
+        end
+      end
       responce
     else
       l(:messenger_command_issue_not_found)
