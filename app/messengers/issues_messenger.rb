@@ -60,11 +60,14 @@ class IssuesMessenger < RedmineMessenger::Base
 
   def issue(messenger, params = {})
     if issue = Issue.find_by_id(params[:issue_id])
-      return l(:messenger_command_issue_not_assignable_user) unless issue.assignable_users.include?(messenger.user)
-      responce = "#{issue.project.name.humanize}: \##{issue.id} #{issue.subject} (" << l(:messenger_command_issue_status, :status => issue.status.name.downcase)
-      responce << ", " << l(:messenger_command_issue_assigned_to, :login => issue.assigned_to.login.to_s) if issue.assigned_to
-      responce << ")"
-      responce << "\n\n" << issue.description if issue.description and issue.description.size > 1
+      responce = "%s://%s/issues/%s\n" % [Setting.protocol, Setting.host_name, issue.id]
+      responce << "#{issue.tracker.name} \##{issue.id} added by #{issue.author} at #{issue.start_date} to #{issue.project}\n"
+      responce << "\n#{issue.subject}\n\n"
+      responce << "Status:     #{issue.status.name}\n"
+      responce << "Priority:   #{issue.priority.name}\n"
+      responce << "Assignee:   #{issue.assigned_to.name}\n" if issue.assigned_to
+      responce << "Category:   #{issue.category.name}\n" if issue.category
+      responce << "\n" << issue.description if issue.description and issue.description.size > 1
       responce
     else
       l(:messenger_command_issue_not_found)
