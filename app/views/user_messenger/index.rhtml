@@ -8,7 +8,7 @@
   <div class="splitcontentleft">
       <h3><%=l(:messenger_view_label_configuration)%></h3>
       <div class="box tabular">
-          <p><%= f.text_field :messenger_id %></p>          
+          <p><%= f.text_field :messenger_id %></p>
           <p><%= f.select :issue_status_when_starting_timer_id, issue_status_to_select %></p>
           <p><%= f.select :issue_status_when_finishing_timer_id, issue_status_to_select %></p>
           <p><%= f.select :issue_status_when_finishing_timer_with_full_ratio_id, issue_status_to_select %></p>
@@ -33,7 +33,7 @@
             <p><strong><%= h(cmd.to_s) %></strong></p>
             <p><%= l("messenger_help_command_#{cmd.command.to_s}_long".to_sym) %></p>
           <% end %>
-        </div>           
+        </div>
     <% end %>
 </div>
 

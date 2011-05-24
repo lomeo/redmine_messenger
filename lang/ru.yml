@@ -28,7 +28,7 @@ field_issue_status_when_finishing_timer: "Изменять состояние з
 field_issue_status_when_finishing_timer_with_full_ratio: "Изменять состояние заявки, когда состояние достигает 100%%"
 field_messenger_notifications: "Отправлять уведомления в Jabber"
 field_assigning_issue_when_starting_timer: "Назначать заявку при начале учета времени"
-      
+
 messenger_options_statuses_dont_change: "не изменять"
 
 # command: issues
@@ -48,9 +48,9 @@ messenger_command_assing_not_assigned: "Не удалось назначить �
 messenger_command_assing_already_assigned: "Заявка уже назначена пользователю {{login}}."
 messenger_command_assing_not_assignable_user: "Заявка не может быть назначена пользователю {{login}}."
 messenger_command_issue_not_assignable_user: "Выполнение запрещено, у вас недостаточно прав для выполнения операции."
- 
+
 # command: timers
-   
+
 messenger_command_timers_issue_not_found: "Заявка не найдена."
 messenger_command_timers_resumed: "Учет времени для заявки '{{issue}}' продолжен."
 messenger_command_timers_not_resumed: "Учет времени для заявки '{{issue}}' уже начат."
@@ -106,7 +106,7 @@ messenger_help_command_issue_long: "Показать информацию о з�
 messenger_help_command_assign_long: "Назначить заявку указанному пользователю. Добавить комментарий, если он указан."
 messenger_help_command_issues_long: "Показать все назначенные вам заявки или показать все заявки, которые содержат указанный текст в названии."
 messenger_help_command_comment_long: "Добавить комментарий к указанной заявке."
-  
+
 messenger_help_group_timers: "Учет времени"
 
 messenger_help_command_start_short: "Начать учет времени для указанной заявки."

@@ -26,7 +26,7 @@
    field_assigning_issue_when_starting_timer: "Atribuir ticket ao iniciar o cronômetro."
 
    messenger_options_statuses_dont_change: "Não mudar"
-   
+
    # command: issues
    messenger_command_issue_not_assigned_to_you: "A operação não permitida porque este ticket não está atribuido a você."
    messenger_command_issues_found: "Foram encontrados {{found}} tickets."
@@ -43,7 +43,7 @@
    messenger_command_assing_already_assigned: "Esse ticket já está atribuido para {{login}}."
    messenger_command_assing_not_assignable_user: "Ticket não pode ser atribuido para {{login}}."
    messenger_command_issue_not_assignable_user: "Operação não permitida. Você não tem privilégio para fazer esta operação."
-   
+
    # command: timers
    messenger_command_timers_issue_not_found: "Ticket não encontrado."
    messenger_command_timers_resumed: "O cronômetro para o ticket '{{issue}}' foi reiniciado."
@@ -101,7 +101,7 @@ Digite 'help' para receber a lista de comandos. Todos os comandos serão listado
    messenger_help_command_assign_long: "Atribuir ticket ao usuário informado. Adiciona um comentário caso informado."
    messenger_help_command_issues_long: "Mostra todos os tickets atribuidos a você ou a um determinado padrão."
    messenger_help_command_comment_long: "Adicionado comentário ao ticket informado."
-  
+
    messenger_help_group_timers: Timers
 
    messenger_help_command_start_short: "Inicia o cronômetro para o ticket informado."

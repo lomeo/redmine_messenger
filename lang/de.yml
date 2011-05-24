@@ -28,7 +28,7 @@ field_issue_status_when_finishing_timer: "Ticket Status setzen, wenn Timer beend
 field_issue_status_when_finishing_timer_with_full_ratio: "Ticket Status setzen, wenn Timer mit 100%% beendet wird"
 field_messenger_notifications: "Benachrichtigungen per Messenger senden"
 field_assigning_issue_when_starting_timer: "Ticket zuweisen, wenn Timer gestartet wird"
-      
+
 messenger_options_statuses_dont_change: "nicht setzen"
 
 # command: issues
@@ -48,9 +48,9 @@ messenger_command_assing_not_assigned: "Das Ticket wurde dem Nutzer '{{login}}' 
 messenger_command_assing_already_assigned: "Das Ticket ist bereits '{{login}}' zugewiesen."
 messenger_command_assing_not_assignable_user: "Das Ticket kann dem Nutzer '{{login}}' nicht zugewiesen werden."
 messenger_command_issue_not_assignable_user: "Die Operation kann nicht durchgeführt werden, da Sie nicht genügend Rechte haben."
- 
+
 # command: timers
-   
+
 messenger_command_timers_issue_not_found: "Das Ticket wurde nicht gefunden."
 messenger_command_timers_resumed: "Der Timer für das Ticket '{{issue}}' wird fortgeführt."
 messenger_command_timers_not_resumed: "Der Timer für das Ticket '{{issue}}' läuft bereits."
@@ -106,7 +106,7 @@ messenger_help_command_issue_long: "Zeigt Informationen zu dem Ticket an."
 messenger_help_command_assign_long: "Weist das Ticket dem angegebenen Nutzer zu. Fügt einen Kommentar dem Ticket hinzu, wenn dieser angegeben wurde."
 messenger_help_command_issues_long: "Zeigt alle Tickets an, welche Ihnen zugewiesen wurden oder dem angegebenen Muster entsprechen."
 messenger_help_command_comment_long: "Fügt einen Kommentar dem Ticket hinzu."
-  
+
 messenger_help_group_timers: "Timer"
 
 messenger_help_command_start_short: "Startet den Timer für das angegebene Ticket."

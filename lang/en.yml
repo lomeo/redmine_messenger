@@ -28,7 +28,7 @@ field_issue_status_when_finishing_timer: "Change issue status when finishing tim
 field_issue_status_when_finishing_timer_with_full_ratio: "Change status when finishing timer with ratio 100%%"
 field_messenger_notifications: "Send notification via messenger"
 field_assigning_issue_when_starting_timer: "Assign issue when starting timer"
-     
+
 messenger_options_statuses_dont_change: "don't change"
 
 # command: issues
@@ -48,9 +48,9 @@ messenger_command_assing_not_assigned: "Issue hasn't been assigned to {{login}}.
 messenger_command_assing_already_assigned: "Issue is already assigned to {{login}}."
 messenger_command_assing_not_assignable_user: "Issue cannot be assignet to user {{login}}."
 messenger_command_issue_not_assignable_user: "Operation not permitted, because you don't have proper rights."
- 
+
 # command: timers
-   
+
 messenger_command_timers_issue_not_found: "Issue can't be found."
 messenger_command_timers_resumed: "Timer for issue '{{issue}}' has been resumed."
 messenger_command_timers_not_resumed: "Timer for issue '{{issue}}' has been already running."
@@ -109,7 +109,7 @@ messenger_help_command_issue_long: "Show information about given issue."
 messenger_help_command_assign_long: "Assign issue to given user. Add comment if given."
 messenger_help_command_issues_long: "Show all issues that are assigned to you or match given pattern."
 messenger_help_command_comment_long: "Add comment to given issue."
-  
+
 messenger_help_group_timers: Timers
 
 messenger_help_command_start_short: "Start timer for given issue."

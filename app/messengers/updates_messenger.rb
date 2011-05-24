@@ -8,12 +8,12 @@ class UpdatesMessenger < RedmineMessenger::Base
     cmd.group :updates
     cmd.param :message, :type => :string, :required => true, :greedy => true
   end
-    
+
   register_handler :list do |cmd|
     cmd.group :updates
     cmd.param :count, :type => :integer, :required => false
   end
- 
+
   def update(messenger, params = {})
     message = params[:message]
     options = {:message => message.strip, :user_id => messenger.user_id, :created_on => Date.today}
@@ -36,11 +36,11 @@ class UpdatesMessenger < RedmineMessenger::Base
     messenger_updates = Status.find(:all, :order => "id desc", :conditions => "project_id is NULL")
     updates = project_updates + messenger_updates
     (updates.sort{|a,b| b.created_at <=> a.created_at})[0..(count -1)].each do |status|
-      responce << status.message_with_details 
+      responce << status.message_with_details
     end
     responce
   end
-  
+
   private
 
 end

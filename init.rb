@@ -29,16 +29,16 @@ Redmine::Plugin.register :redmine_messenger do
   description 'Messenger is a plugin to allow users to communicate with Redmine via Instant Messenger.'
   url 'http://github.com/mszczytowski/redmine_messenger/'
   version '0.0.9'
- 
-  # Minimum version of Redmine.  
-  
+
+  # Minimum version of Redmine.
+
   requires_redmine :version_or_higher => '0.8.0'
 
   # Configuring permissions for plugin's controller.
-    
+
   permission :user_messenger, {"user_messenger".to_sym => [:index]}, :public => true
 
-  # Creating menu entry. 
-  
+  # Creating menu entry.
+
   menu :account_menu, :user_messenger, { :controller => 'user_messenger', :action => 'index' }, :caption => :messenger_menu_label, :after => :my_account, :if => Proc.new { User.current.logged? }
 end

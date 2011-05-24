@@ -51,7 +51,7 @@ de:
   messenger_command_issue_not_assignable_user: "Die Operation kann nicht durchgeführt werden, da Sie nicht genügend Rechte haben."
 
   # command: timers
-   
+
   messenger_command_timers_issue_not_found: "Das Ticket wurde nicht gefunden."
   messenger_command_timers_resumed: "Der Timer für das Ticket '{{issue}}' wird fortgeführt."
   messenger_command_timers_not_resumed: "Der Timer für das Ticket '{{issue}}' läuft bereits."

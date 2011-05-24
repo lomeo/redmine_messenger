@@ -48,9 +48,9 @@ messenger_command_assing_not_assigned: "Zagadnienie nie zostało przypisane do u
 messenger_command_assing_already_assigned: "Zagadnienie jest już przypisane do użytkownika {{login}}."
 messenger_command_assing_not_assignable_user: "Nie można przypisać zagadnienia do użytkownika {{login}}."
 messenger_command_issue_not_assignable_user: "Nie można wykonać operacji, ponieważ nie masz odpowiednich uprawnień."
- 
+
 # command: timers
-        
+
 messenger_command_timers_issue_not_found: "Nieznaleziono zagadnienia."
 messenger_command_timers_resumed: "Licznik dla '{{issue}}' został uruchomiony."
 messenger_command_timers_not_resumed: "Licznik dla '{{issue}}' był już uruchomiony."
@@ -106,7 +106,7 @@ messenger_help_command_issue_long: "Pokaż informacje na temat podanego zagadnie
 messenger_help_command_assign_long: "Przypisz zaganienie do podanego użytkownika. Opcjonalnie można dodać komentarz do zagadnienia."
 messenger_help_command_issues_long: "Pokaż listę przypisanych zagadnień lub listę zagadnień pasujących do podago wzorca."
 messenger_help_command_comment_long: "Dodaj komentarz do zagadnienia."
-  
+
 messenger_help_group_timers: Liczniki
 
 messenger_help_command_start_short: "Uruchom licznik dla podanego zagadnienia."

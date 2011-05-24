@@ -4,7 +4,7 @@ class AddMessengerNotificationColumn < ActiveRecord::Migration
     add_column :user_messengers, :messenger_notifications, :string, :default => "mail"
   end
 
-  def self.down   
+  def self.down
     add_column :user_messengers, :messenger_notifications_instead_of_emails, :boolean, :default => false
     remove_column :user_messengers, :messenger_notifications
   end

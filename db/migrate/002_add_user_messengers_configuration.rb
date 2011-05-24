@@ -8,7 +8,7 @@ class AddUserMessengersConfiguration < ActiveRecord::Migration
       t.integer :issue_status_when_finishing_timer_with_full_ratio_id, :null => true
       t.boolean :messenger_notifications_instead_of_emails, :default => false
       t.boolean :assigning_issue_when_starting_timer, :default => false
-    end  
+    end
   end
 
   def self.down

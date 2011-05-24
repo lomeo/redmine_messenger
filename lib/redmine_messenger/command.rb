@@ -10,17 +10,17 @@ module RedmineMessenger
     def initialize(command_name, options = {})
       @group = :general
       @command = command_name.to_sym
-      @method = command_name.to_sym    
+      @method = command_name.to_sym
       @options = options
       @options[:pattern] ||= Regexp.new("^#{command_name.to_s}\\b")
       @parameters = []
     end
 
-    # Returns param array for given body. False if parameters are incorrect.    
+    # Returns param array for given body. False if parameters are incorrect.
     def params_for_message(message_body)
       params = {}
       tokens = message_body.split(/\s+/)
-      
+
       tokens.shift if tokens[0] == @command.to_s
 
       @parameters.each do |param|
@@ -44,16 +44,16 @@ module RedmineMessenger
 
       params
     end
-       
+
     # Set or get group, default is :general.
     def group(group = nil)
       if group.nil?
-        @group 
+        @group
       else
-        @group = group       
+        @group = group
       end
     end
-    
+
     # Set or get method, default is <tt>command_name</tt>.
     def method(method = nil)
       if method.nil?
@@ -62,7 +62,7 @@ module RedmineMessenger
         @method = method
       end
     end
-    
+
     # Add new param (see <tt>Param</tt>).
     def param(name, options = {})
       @parameters << Param.new(name, options)
@@ -85,20 +85,20 @@ module RedmineMessenger
       end
       @command_to_string
     end
-    
+
   end
-  
+
   # Definition of command's parameter (see <tt>Command.param</tt>).
   class Param
 
     attr_reader :name, :options
-    
+
     # Create param with given +name+.
     # Additional +options+ are <tt>:required</tt> (true by default), <tt>:greedy</tt> (false by default, takes all command string if true) and <tt>:type</tt> (:string by default, others are :integer, :float).
     def initialize(name, options)
       @name = name
       @options = { :required => true, :type => :string, :greedy => false }
-      @options.merge!(options)      
+      @options.merge!(options)
     end
 
     # Check if value has proper type.
@@ -111,7 +111,7 @@ module RedmineMessenger
         true
       end
     end
-    
+
     # Get param value in proper type.
     def value_to_type(value)
       if @options[:type] == :integer

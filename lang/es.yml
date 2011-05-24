@@ -28,7 +28,7 @@ field_issue_status_when_finishing_timer: "Cambie el estado de la peticion cuando
 field_issue_status_when_finishing_timer_with_full_ratio: "Cambie el estado de la peticion cuando termine el temporizador con 100%%"
 field_messenger_notifications: "Envie notificacion a traves de mensajeria"
 field_assigning_issue_when_starting_timer: "Asigne la peticion cuando comienze el temporizador"
-      
+
 messenger_options_statuses_dont_change: "No cambiar"
 
 # command: issues
@@ -38,7 +38,7 @@ messenger_command_issues_found: "Han sido encontradas {{found}} peticiones."
 messenger_command_issues_not_found: "No existe peticion con '{{issue}}' en el nombre."
 messenger_command_issues_assigned_not_found: "No ha asignado ninguna peticion."
 messenger_command_issue_not_found: "No se encontro la peticion."
-messenger_command_issue_status: "estado: {{status}}" 
+messenger_command_issue_status: "estado: {{status}}"
 messenger_command_issue_assigned_to: "asignado a: {{login}}"
 messenger_command_comment_commented: "Comentario a&ntilde;adido."
 messenger_command_comment_not_commented: "El comentario no ha sido a&ntilde;adido."
@@ -48,9 +48,9 @@ messenger_command_assing_not_assigned: "La peticion no ha sido asignada a '{{log
 messenger_command_assing_already_assigned: "La peticion ya fue asignada a '{{login}}'."
 messenger_command_assing_not_assignable_user: "No se puede asignar la peticion a '{{login}}'."
 messenger_command_issue_not_assignable_user: "Operacion no permitida, usted no tiene los permisos necesarios."
- 
+
 # command: timers
-   
+
 messenger_command_timers_issue_not_found: "La peticion no ha sido encontrada."
 messenger_command_timers_resumed: "Temporizador para la peticion '{{issue}}' fue reanudado."
 messenger_command_timers_not_resumed: "Temporizador para la peticion '{{issue}}' ya ha sido reanudado."

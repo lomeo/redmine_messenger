@@ -6,17 +6,17 @@ module RedmineMessenger
     else
       extend MessengerI18nPatch
     end
-   
+
     class << self
-     
+
       # Catch all methods starting with <tt>delivel_</tt> or <tt>receive_</tt>.
       #
-      # Methods <tt>delivel_METHOD_NAME</tt> sends +parameters+ to your 
-      # method METHOD_NAME which must return array with messenger_id (first 
-      # element) and message_body (second parameter). This message is send to 
+      # Methods <tt>delivel_METHOD_NAME</tt> sends +parameters+ to your
+      # method METHOD_NAME which must return array with messenger_id (first
+      # element) and message_body (second parameter). This message is send to
       # given user. If your method return false, message won't be sent.
       #
-      # Methods <tt>delivel_COMMAND_NAME</tt> are call by messenger (see <tt>Messenger.receive_message</tt>). 
+      # Methods <tt>delivel_COMMAND_NAME</tt> are call by messenger (see <tt>Messenger.receive_message</tt>).
       # As results one of this action is possible:
       # * message that user is not registered
       # * user is verified
@@ -25,20 +25,20 @@ module RedmineMessenger
       # * message with help is sent.
       def method_missing(method, *parameters)
         if /^deliver_([_a-z]\w*)/ =~ method.id2name
-          message = instance.send($1, parameters)          
+          message = instance.send($1, parameters)
           Messenger.send_message(message[0], message[1]) if message
         elsif /^status_([_a-z]\w*)/ =~ method.id2name
           messenger_id, new_status = parameters
-          
-          if messenger = UserMessenger.find_by_messenger_id(messenger_id) and messenger.verified?     
-            responce = instance.send($1.to_sym, messenger, new_status)                        
+
+          if messenger = UserMessenger.find_by_messenger_id(messenger_id) and messenger.verified?
+            responce = instance.send($1.to_sym, messenger, new_status)
             Messenger.send_message(messenger_id, responce) if responce
-          end          
+          end
         elsif /^receive_([_a-z]\w*)/ =~ method.id2name
           messenger_id, message_body = parameters
 
           if messenger = UserMessenger.find_by_messenger_id(messenger_id)
-            if messenger.verified?              
+            if messenger.verified?
               if command = Base.commands[$1.to_sym]
                 params = command.params_for_message(message_body)
                 unless params
@@ -53,14 +53,14 @@ module RedmineMessenger
                 # Command not found, show help.
                 base_instance.help(messenger, message_body)
               end
-            else 
+            else
               # User not verify.
               base_instance.verify(messenger_id, message_body)
             end
           else
             # User not registered.
             base_instance.verify(messenger_id, message_body)
-          end          
+          end
         else
           super(method, parameters)
         end
@@ -75,23 +75,23 @@ module RedmineMessenger
         Base.commands[cmd.command] = cmd
         Messenger.register_message_handler(instance.class, "receive_#{cmd.method.to_s}", cmd.options)
       end
-      
+
       # Register status handler.
       def register_status_handler(command, status = :all)
         Messenger.register_status_handler(instance.class, "status_#{command.to_s}", status)
       end
-      
+
       # Returns help for given command or all help if command doesn't exists.
       def help_to_string(messenger, message_body_with_command = nil)
-        # Remove help token if exists.        
+        # Remove help token if exists.
         command = message_body_with_command ? message_body_with_command.gsub(/help/, "").strip : ""
-        
+
         # Get command symbol.
         # TODO It's not safe. Command can have name 'command_not_registered'.
-        command = command.blank? ? :command_not_registered : command.to_sym 
-        
+        command = command.blank? ? :command_not_registered : command.to_sym
+
         @helps ||= {}
-        
+
         unless @helps[command]
           if cmd = Base.commands[command]
             # Help for given command.
@@ -120,7 +120,7 @@ module RedmineMessenger
             @helps[command] << ll(messenger.language, :messenger_help_footer_short)
           end
         end
-        
+
         @helps[command]
       end
 
@@ -128,22 +128,22 @@ module RedmineMessenger
       def commands
         @commands ||= {}
       end
-      
+
       private
-      
+
       def base_instance
         if @base_instance.nil?
           @base_instance = Base.new
         end
         @base_instance
-      end    
-      
+      end
+
       def instance
         if @instance.nil?
           @instance = new
         end
         @instance
-      end      
+      end
 
     end
 
@@ -151,9 +151,9 @@ module RedmineMessenger
     def param_missing(messenger, command)
       Messenger.send_message(messenger.messenger_id, Base.ll(messenger.language, :messenger_error_param_missing, :command => command))
     end
-    
+
     # Verify user and send proper message.
-    def verify(messenger_id, code)     
+    def verify(messenger_id, code)
       if user = UserMessenger.find_by_messenger_id(messenger_id)
         if code =~ /^(\d+)/
           if user.verify($1)
@@ -169,9 +169,9 @@ module RedmineMessenger
       end
       Messenger.send_message(messenger_id, responce)
     end
-      
+
     # Send help message.
-    def help(messenger, message_body)      
+    def help(messenger, message_body)
       help = Base.help_to_string(messenger, message_body)
       Messenger.send_message(messenger.messenger_id, help)
     end
